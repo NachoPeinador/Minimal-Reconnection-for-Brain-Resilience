@@ -10,7 +10,7 @@
 
 ---
 
-![Conceptual illustration of ORT-THERAPY-F](Entry_Image.jpg)
+![Conceptual illustration of ORT-THERAPY-F](Entry_Image.png)
 *Conceptual illustration showing "Giant Component Absorption" (GCA). The minimal intervention of ORT-THERAPY-F reconnects the damaged and fragmented connectome (left) to restore its topological integrity (right).*
 
 ---
