@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17417142.svg)](https://doi.org/10.5281/zenodo.17417142)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17426902.svg)](https://doi.org/10.5281/zenodo.17426902)
 
 ---
 
@@ -64,11 +64,4 @@ If you use this work, please cite it:
 
 **BibTeX Format**
 ```bibtex
-@article{PeinadorSala2025,
-  author    = {Jos\'{e} Ignacio Peinador Sala},
-  title     = {Minimal Reconnection for Brain Resilience: A Strategic Reconnection Framework (ORT-THERAPY-F) for Damaged Connectomes},
-  journal   = {Zenodo},
-  year      = {2025},
-  doi       = {10.5281/zenodo.17417142},
-  note      = {Code and data repository: \url{[https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience](https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience)}}
-}
+Peinador Sala, J. I. (2025). Minimal Reconnection for Brain Resilience: A Strategic Reconnection Framework (ORT-THERAPY-F) for Damaged Connectomes. Zenodo. https://doi.org/10.5281/zenodo.17426902
