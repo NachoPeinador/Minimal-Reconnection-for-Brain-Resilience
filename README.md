@@ -34,7 +34,7 @@ This repository is designed for open science and full reproducibility. You can r
 
 **Complete Validation Pipeline**
 Run the large-scale experiment to validate how ORT-THERAPY-F (GCA) repairs the damaged connectome and why the baselines (PA and CN) fail.
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1v_N-qO_q-Tj1iG2g2e_wY_xKjWq-Z2qB) **<-- (REMEMBER TO UPDATE THIS LINK TO YOUR NOTEBOOK!)**
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1dI0tUlcEi-J2Y8QekgNhINdq9smNhXz_) 
 
 ## 📂 Repository Structure
 * `ORT_Therapy_Comparison.ipynb`: The interactive Colab notebook with the paper's core experiment.
