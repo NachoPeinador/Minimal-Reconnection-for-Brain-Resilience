@@ -1,0 +1,161 @@
+% --- PREAMBLE (REVISED AND MAINTAINED) ---
+\documentclass[12pt,onecolumn]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} % Changed from spanish to english
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage[labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{authblk}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{subcaption}
+\usepackage{soul}
+\usepackage{makecell} % Package for multi-line table headers
+
+\title{Minimal Reconnection for Brain Resilience: A Strategic Reconnection Framework (ORT-THERAPY-F) for Damaged Connectomes}
+
+\author{José Ignacio Peinador Sala}
+\affil{Independent Researcher \\ \href{mailto:joseignacio.peinador@gmail.com}{joseignacio.peinador@gmail.com} \\ \href{https://orcid.org/0009-0008-1822-3452}{ORCID: 0009-0008-1822-3452}}
+
+\date{\today}
+
+% --- DOCUMENT BODY (FINAL REVISED VERSION) ---
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Neurodegenerative diseases such as Alzheimer's are characterized by the progressive fragmentation of the structural brain network, modeled here as a \textbf{targeted attack that prioritizes the vulnerability of 'hubs' (high-connectivity nodes)}. We present ORT-THERAPY-F (\textit{Optimal Reconnection Topology Therapy Framework}), a computational framework that proposes a strategic reconnection heuristic called \textbf{'Giant Component Absorption' (GCA)}. We rigorously compare the efficacy and efficiency of our heuristic against two standard link prediction methods used as baselines: \textbf{Preferential Attachment (PA) and Common Neighbors (CN)}. The results demonstrate that, after severe damage fragments the network into 994 components, ORT-THERAPY-F \textbf{completely restores global connectivity} (reducing 993 components). In stark contrast, the PA and CN strategies \textbf{fail completely (0 components reduced)}, proving ineffective for this reconnection task. Furthermore, ORT-THERAPY-F achieves this restoration using an optimal connection budget (36.5\% fewer connections than the baselines) and by being computationally faster. This framework provides a validated and efficient strategy to reverse topological fragmentation in damaged connectomes.
+\end{abstract}
+
+\section{Introduction}
+The structural integrity of brain networks, or connectomes, is a fundamental pillar for cognitive function. Neurodegenerative diseases, particularly Alzheimer's disease (AD), act as a disruptive process that attacks this topology, disconnecting regions and fragmenting the global network \cite{Aerts2016}. This perspective reframes AD as a \textbf{'disconnection syndrome'}, where cognitive decline is a direct consequence of the network's topological degradation, and the severity of the alteration correlates with the magnitude of the functional deficit \cite{He2014, Sporns2021}.
+
+This fragmentation is not random. Growing evidence suggests a \textbf{targeted attack (TA)} model, where the network's 'hubs'—nodes with exceptionally high connectivity—are preferentially vulnerable due to their high metabolic demand and activity levels \cite{deHaan2012, Siddiqi2022}. This type of damage, centered on the most critical nodes for information flow, is far more devastating and fragments the network more severely than random failure, posing a formidable challenge for any repair strategy.
+
+This work addresses the problem of repair under this realistic damage model, focusing on global reconnection with minimal resources. We propose a framework, ORT-THERAPY-F, and its \textbf{Strategic Reconnection} heuristic designed specifically to reverse fragmentation. To validate its efficacy, we answer a critical question: Is an explicit reconnection strategy, inspired by biological repair principles, superior to generic link prediction methods not designed for this task? We compare our approach against two of the most established algorithms in link prediction, Preferential Attachment (PA) and Common Neighbors (CN), to evaluate both efficacy (quality of repair) and efficiency (computational and connection cost).
+
+\section{Experimental Methodology}
+We used a human structural connectome obtained from the Network Data Repository (Rossi \& Ahmed, 2015), corresponding to the \texttt{bn-human-BNU\_1\_0025890} dataset. The initial healthy network was processed to obtain its giant component, resulting in a network of \textbf{171,748 nodes and 15,642,819 edges}.
+
+\subsection{Damage Model: Targeted Attack on Links}
+To simulate realistic AD-like damage, we implemented a \textbf{Targeted Attack on Links (TA)} model, which focuses on removing edges rather than nodes. This approach is based on the hub vulnerability hypothesis \cite{deHaan2012}, where the links connecting the most important nodes are the most fragile. Unlike Random Failure (RF), this model preferentially removes links based on the connectivity of the nodes they join. Each link $(u, v)$ in the healthy network is assigned a vulnerability score $S = \text{degree}(u) + \text{degree}(v)$. Links with a higher $S$ (connecting hubs) have a proportionally higher probability of removal. This type of attack on links explains why the network fragments into multiple components instead of just disconnecting individual nodes. \textbf{This model of damage to high-connectivity links, though a simplification, seeks to capture the essence of the topological degradation observed in AD, where hub dysfunction can translate into the loss of their crucial connections.} We applied a 45\% damage intensity to the healthy network, a level sufficient to cause significant fragmentation.
+
+\subsection{Repair Strategies and Baselines}
+We compared three repair strategies. Each was assigned an identical connection budget of \textbf{1,564 links} (approximately 0.01\% of the original edges) to add to the damaged network.
+
+\subsubsection{ORT-THERAPY-F (Proposal)}
+Our heuristic, named \textbf{'Giant Component Absorption' (GCA)}, is designed for reconnection. The algorithm first identifies the giant component (GC) and all isolated components. Then, it iteratively connects a randomly selected node from each isolated component to a randomly selected node in the GC. This strategy explicitly connects the 'islands' to the 'mainland', aiming to merge all components into one.
+
+\subsubsection{Baseline 1: Preferential Attachment (PA)}
+A standard link prediction method based on the "rich get richer" premise. It assigns a score $S = \text{degree}(u) \cdot \text{degree}(v)$ to pairs of non-connected nodes $(u, v)$. The therapy consists of adding the $K=1,564$ links with the highest scores. This strategy tends to densify already existing and well-connected clusters.
+
+\subsubsection{Baseline 2: Common Neighbors (CN)}
+Another classic method based on homophily ("friends of my friends"). It assigns a score $S = |N(u) \cap N(v)|$ (the number of common neighbors) to pairs of non-connected nodes $(u, v)$. The therapy adds the $K=1,564$ links with the highest scores. This strategy tends to close triangles and reinforce local communities.
+
+\section{Results}
+The 45\% targeted attack model was highly effective, fragmenting the healthy network (1 component) into a damaged state with \textbf{994 components} and a resilience of 0.5989. \textbf{Resilience is defined here as the size of the Giant Component normalized by the total number of nodes in the network, reflecting the network's ability to maintain its global connectivity.} This "Pre-Therapy" state served as the starting point for the three repair strategies. The comparative results of efficacy and efficiency are presented in Table \ref{tab:resultados}.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of Efficacy and Efficiency of Repair Strategies (Targeted Attack at 45\%)}
+\label{tab:resultados}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Strategy} & \textbf{Component Reduction} & \textbf{GC Ratio Gain} & \textbf{Resilience Gain} & \textbf{Time (s)} & \textbf{Components (Post)} & \textbf{Connections Used} \\
+\midrule
+Damaged State (Pre-Therapy) & 0 & +0.000\% & +0.0000 & 0.00 & 994 & 0 \\
+\textbf{ORT-THERAPY-F (Proposed)} & \textbf{993} & \textbf{+0.579\%} & \textbf{+0.4011} & \textbf{10.30} & \textbf{1} & \textbf{993} \\
+Preferential Attachment (Baseline) & 0 & +0.000\% & +0.0000 & 16.01 & 994 & 1564 \\
+Common Neighbors (Baseline) & 0 & +0.000\% & +0.0000 & 147.69 & 994 & 1445 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Failure of Baselines (PA and CN)}
+Both Preferential Attachment and Common Neighbors proved to be \textbf{completely ineffective} for the reconnection task. Despite adding their budget of links (1,564 and 1,445 respectively), they \textbf{failed to reduce even a single component of the network} (Component Reduction = 0). The number of post-therapy components remained at 994, identical to the damaged state. This indicates that these strategies, optimized for densification, added links *within* existing components (mainly within the giant component), but failed to "find" and "bridge" the 993 isolated components.
+
+\subsection{Success and Efficiency of ORT-THERAPY-F}
+In stark contrast, our proposed strategy (GCA) was \textbf{extremely effective and efficient}.
+\begin{itemize}
+    \item \textbf{Total Efficacy:} The algorithm identified all 993 isolated components and successfully reconnected them to the giant component, \textbf{reducing the number of components from 994 to 1}. This completely restored the network's global connectivity, with the consequent gain in the giant component ratio (+0.579\%) and resilience (+0.4011).
+    \item \textbf{Resource Efficiency:} Notably, it achieved this complete repair using only \textbf{993 connections}, one for each isolated component. This was 36.5\% fewer connections than the allocated budget (1,564), demonstrating optimal resource efficiency.
+    \item \textbf{Computational Efficiency:} The strategy was also the fastest, completing the therapy in \textbf{10.30 seconds}, 1.5 times faster than PA (16.01s) and 14.3 times faster than CN (147.69s).
+\end{itemize}
+
+\section{Discussion}
+The results of the comparative simulation (Table \ref{tab:resultados}) unequivocally demonstrate that network repair strategies are not interchangeable and must be tailored to the specific topological problem. Standard link prediction methods, such as PA and CN, are optimized for \textit{densification}—predicting missing links within an already connected structure—but fail completely at \textit{reconnection} of isolated components.
+
+The failure of the baselines is a direct consequence of their algorithmic design. \textbf{Preferential Attachment}, by its "rich get richer" nature, preferentially adds links to high-degree nodes, which reside almost exclusively within the giant component, reinforcing it but without building bridges outward. Meanwhile, \textbf{Common Neighbors} is structurally incapable of proposing a link between two disconnected components, as, by definition, nodes in different components share no common neighbors. Its inherent logic (closing triangles) can only reinforce existing local communities.
+
+In contrast, the GCA heuristic of ORT-THERAPY-F directly addresses the fragmentation topology. Its success is not only total but also resource-optimal. Reconnecting a network fragmented into $N$ components requires a theoretical minimum of $N-1$ links. GCA uses exactly 993 links to merge the 993 isolated components, achieving complete restoration with the minimum possible investment.
+
+The simplicity of the GCA heuristic is not a limitation but a methodological strength. In computational biology, parsimonious models (those with the minimum of assumptions) are highly valued for their ability to reveal the fundamental requirements of a system and generate testable hypotheses, in line with Occam's Razor \cite{Antal2024, Gray2016}. GCA acts as an 'optimal and minimal' model, establishing a fundamental proof of concept and a rigorous baseline against which future, more complex repair strategies can be compared. It demonstrates that the 'bridge components' principle is, by itself, sufficient to restore global connectivity.
+
+This finding conceptually distinguishes the post-fragmentation repair task from other paradigms like link prediction or strategic rewiring to improve robustness \cite{Aerts2016}, and it aligns with biological principles of \textbf{adaptive rewiring}, where the network self-organizes to optimize information flow \cite{Kaiser2022}. The GCA strategy is conceptually analogous to these processes, as it simulates the formation of new connections to reintegrate isolated regions into the main network, a phenomenon observed in post-lesion brain plasticity \cite{Kaiser2022}. We empirically demonstrate that reversing pathological fragmentation requires a specific topological strategy. Reconnection is not achieved by densifying the "rich" (existing hubs), but by building strategic bridges to the "poor" (isolated components).
+
+\textbf{It is important to note that, while the targeted attack model on high-connectivity links captures key aspects of fragmentation in AD, neurodegenerative diseases are complex phenomena with multiple damage mechanisms that go beyond mere structural disconnection. Future research could explore more multifactorial damage models to address the inherent complexity of these pathologies.}
+
+\section{Conclusion}
+We have presented ORT-THERAPY-F, a computational framework for repairing damaged connectomes, and empirically validated its central heuristic (GCA) against standard baselines (PA and CN) under a realistic damage model. While link prediction methods failed completely to reconnect the network, our strategy restored global connectivity fully, efficiently, and with optimal resource use.
+
+This work establishes a fundamental principle: the repair of network fragmentation is a distinct topological problem that requires specific solutions. The GCA heuristic, validated in this framework, serves as a computational proof of concept and an optimal baseline for the emerging field of \textbf{topological therapy}. Although translation to clinical applications is a long-term goal facing a significant translational gap \cite{Fornito2025}, these types of *in silico* models are an indispensable step. They provide a 'virtual laboratory' to design and validate repair strategies before considering their implementation through neuromodulation modalities like Deep Brain Stimulation (DBS) or Transcranial Direct Current Stimulation (tDCS), which aim to guide the brain's endogenous plasticity mechanisms. Therefore, this framework provides a strategic basis for exploring how to theoretically mitigate the effects of pathological disconnection.
+
+% --- BIBLIOGRAPHY AND APPENDIX (REVISED AND EXPANDED) ---
+\begin{thebibliography}{99}
+
+\bibitem{Aerts2016}
+Aerts, H., Haeck, M., Van Mele, V., van Mierlo, P., Staelens, S., Vandenberghe, R.,... \& Marinazzo, D. (2016). Brain networks under attack: robustness properties and the impact of lesions. \emph{Brain}, 139(12), 3063-3083.
+
+\bibitem{He2014}
+He, Y., Dagher, A., Chen, Z., Charil, A., Zijdenbos, A., Worsley, K., \& Evans, A. (2014). Disrupted structural and functional brain connectomes in mild cognitive impairment and Alzheimer's disease. \emph{PLoS ONE}, 9(1), e84756.
+
+\bibitem{Sporns2021}
+Sporns, O. (2021). Connectomics in Alzheimer disease. \emph{Nature Reviews Neurology}, 17(11), 651-652.
+
+\bibitem{deHaan2012}
+de Haan, W., Mott, K., van Straaten, E. C., Scheltens, P., \& Stam, C. J. (2012). Activity dependent degeneration explains hub vulnerability in Alzheimer's disease. \emph{PLoS computational biology}, 8(8), e1002582.
+
+\bibitem{Siddiqi2022}
+Siddiqi, S. H., Kording, K. P., Parvizi, J., \& Fox, M. D. (2022). Causal mapping of human brain function. \emph{Nature Reviews Neuroscience}, 23(6), 361-375.
+
+\bibitem{Rossi2015}
+Rossi, R. A., \& Ahmed, N. K. (2015). The network data repository with interactive graph analytics and visualization. In \emph{AAAI}.
+
+\bibitem{Antal2024}
+Antal, B. B., Chesebro, A. G., Strey, H. H., Mujica-Parodi, L. R., \& Weistuch, C. (2024). Achieving Occam's razor: Deep learning for optimal model reduction. \emph{PLoS Computational Biology}, 20(7), e1012283.
+
+\bibitem{Gray2016}
+Gray, R. A., \& Pathmanathan, P. (2016). A Parsimonious Model of the Rabbit Action Potential Elucidates the Minimal Physiological Requirements for Alternans and Spiral Wave Breakup. \emph{PLoS Computational Biology}, 12(10), e1005087.
+
+\bibitem{Kaiser2022}
+Kaiser, M. (2022). Adaptive rewiring in evolving neural networks. \emph{PLoS Computational Biology}, 18(8), e1011325.
+
+\bibitem{Fornito2025}
+Fornito, A., et al. (2025). Translational network neuroscience: Nine roadblocks and possible solutions. \emph{Network Neuroscience}, 9(1), 352-374.
+
+\end{thebibliography}
+
+\section*{Appendix: Computational Implementation}
+The full source code for the ORT-THERAPY-F algorithm, datasets, and validation protocols are available at:\\
+\url{https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience}.
+
+\subsection*{Technical Specifications}
+\begin{itemize}
+    \item Language: Python 3.8+
+    \item Libraries: NetworkX, NumPy, SciPy, Pandas
+    \item Hardware: Simulation run on standard CPU (Intel Core i7).
+\end{itemize}
+
+\end{document}
