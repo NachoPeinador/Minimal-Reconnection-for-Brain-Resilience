@@ -1,8 +1,8 @@
 # Minimal Reconnection for Brain Resilience: A Strategic Reconnection Framework (ORT-THERAPY-F) for Damaged Connectomes
 
-[![Autor](https://img.shields.io/badge/Autor-Jos%C3%A9%20Ignacio%20Peinador%20Sala-lightgrey.svg)](https://orcid.org/0009-0008-1822-3452)
+[![Author](https://img.shields.io/badge/Author-Jos%C3%A9%20Ignacio%20Peinador%20Sala-lightgrey.svg)](https://orcid.org/0009-0008-1822-3452)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--1822--3452-A6CE39.svg?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-1822-3452)
-[![Contacto](https://img.shields.io/badge/Contacto-joseignacio.peinador@gmail.com-007BFF.svg)](mailto:joseignacio.peinador@gmail.com)
+[![Contact](https://img.shields.io/badge/Contact-joseignacio.peinador@gmail.com-007BFF.svg)](mailto:joseignacio.peinador@gmail.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -10,59 +10,59 @@
 
 ---
 
-![Ilustración conceptual de ORT-THERAPY-F](httpsEntry_Image.jpg)
-*Ilustración conceptual que muestra la "Absorción por Componente Gigante" (GCA). La intervención mínima de ORT-THERAPY-F reconecta el conectoma dañado y fragmentado (izquierda) para restaurar su integridad topológica (derecha).*
+![Conceptual illustration of ORT-THERAPY-F](Entry_Image.jpg)
+*Conceptual illustration showing "Giant Component Absorption" (GCA). The minimal intervention of ORT-THERAPY-F reconnects the damaged and fragmented connectome (left) to restore its topological integrity (right).*
 
 ---
 
-Este repositorio contiene el código, los datos y los experimentos del artículo de investigación "**Minimal Reconnection for Brain Resilience: A Strategic Reconnection Framework (ORT-THERAPY-F) for Damaged Connectomes**".
+This repository contains the code, data, and experiments for the research paper "**Minimal Reconnection for Brain Resilience: A Strategic Reconnection Framework (ORT-THERAPY-F) for Damaged Connectomes**".
 
-El proyecto modela la fragmentación progresiva en enfermedades neurodegenerativas (como el Alzheimer) como un **ataque dirigido que prioriza la vulnerabilidad de los 'hubs' (nodos de alta conectividad)**.
+The project models the progressive fragmentation in neurodegenerative diseases (like Alzheimer's) as a **targeted attack that prioritizes the vulnerability of 'hubs' (high-connectivity nodes)**.
 
-Proponemos ORT-THERAPY-F, un framework computacional que valida una heurística de reconexión estratégica llamada **'Absorción por Componente Gigante' (GCA)**. Comparamos rigurosamente nuestra heurística (GCA) contra dos métodos estándar de predicción de enlaces: **Preferential Attachment (PA)** y **Common Neighbors (CN)**.
+We propose ORT-THERAPY-F, a computational framework that validates a strategic reconnection heuristic called **'Giant Component Absorption' (GCA)**. We rigorously compare our heuristic (GCA) against two standard link prediction methods: **Preferential Attachment (PA)** and **Common Neighbors (CN)**.
 
-Los resultados demuestran que, tras un daño severo que fragmenta la red en **994 componentes**, ORT-THERAPY-F **restaura completamente la conectividad global** (reduciendo 993 componentes). En marcado contraste, las estrategias de referencia (PA y CN) **fracasan por completo (0 componentes reducidos)**, demostrando ser ineficaces para esta tarea de reconexión. Además, ORT-THERAPY-F logra esta restauración utilizando un presupuesto de conexión óptimo (**36.5% menos conexiones** que las líneas base) y siendo computacionalmente más rápido.
+The results demonstrate that, after severe damage fragments the network into **994 components**, ORT-THERAPY-F **completely restores global connectivity** (reducing 993 components). In stark contrast, the baseline strategies (PA and CN) **fail completely (0 components reduced)**, proving ineffective for this reconnection task. Furthermore, ORT-THERAPY-F achieves this restoration using an optimal connection budget (**36.5% fewer connections** than the baselines) and by being computationally faster.
 
-## 🎯 Contribuciones Principales
-* 🧠 **Modelo de Daño Realista:** Simula la neurodegeneración (Alzheimer) como un **Ataque Dirigido a Hubs** (vulnerabilidad de enlaces de alta conectividad), en lugar de un fallo aleatorio.
-* 💯 **Fiabilidad Determinista:** Nuestro método (GCA) alcanzó una tasa de éxito de reconexión del **100%** (993 de 993 fragmentos reparados). Las líneas base estándar (PA y CN) **fallaron por completo (0% de éxito)**.
-* 💡 **Optimalidad de Recursos:** Logramos una reparación perfecta utilizando un **36.5% menos de conexiones** que las estrategias de referencia, a las cuales se les otorgó un presupuesto mayor y aun así fallaron.
-* 🔬 **Distinción del Problema:** Demostramos empíricamente que las estrategias de *densificación* (PA, CN) no son estrategias de *reconexión* (GCA), y fracasan en la tarea de restaurar la integridad estructural global.
+## 🎯 Main Contributions
+* 🧠 **Realistic Damage Model:** Simulates neurodegeneration (Alzheimer's) as a **Targeted Hub Attack** (vulnerability of high-connectivity links), rather than random failure.
+* 💯 **Deterministic Reliability:** Our method (GCA) achieved a **100%** reconnection success rate (993 out of 993 fragments repaired). Standard baselines (PA and CN) **failed completely (0% success)**.
+* 💡 **Resource Optimality:** We achieved perfect repair using **36.5% fewer connections** than the baseline strategies, which were given a larger budget and still failed.
+* 🔬 **Problem Distinction:** We empirically demonstrate that *densification* strategies (PA, CN) are not *reconnection* strategies (GCA), and they fail at the task of restoring global structural integrity.
 
-## 🔬 Experimento Interactivo y Reproducible
-Este repositorio está diseñado para la ciencia abierta y la reproducibilidad total. Puedes ejecutar el pipeline completo del artículo (carga del conectoma, simulación del ataque a hubs y la comparativa de terapias) en el siguiente cuaderno de Google Colab.
+## 🔬 Interactive and Reproducible Experiment
+This repository is designed for open science and full reproducibility. You can run the paper's complete pipeline (loading the connectome, simulating the hub attack, and comparing the therapies) in the following Google Colab notebook.
 
-**Pipeline de Validación Completo**
-Ejecuta el experimento a gran escala para validar cómo ORT-THERAPY-F (GCA) repara el conectoma dañado y por qué fallan las líneas base (PA y CN).
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1v_N-qO_q-Tj1iG2g2e_wY_xKjWq-Z2qB) **<-- (¡RECUERDA ACTUALIZAR ESTE ENLACE AL DE TU NOTEBOOK!)**
+**Complete Validation Pipeline**
+Run the large-scale experiment to validate how ORT-THERAPY-F (GCA) repairs the damaged connectome and why the baselines (PA and CN) fail.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1v_N-qO_q-Tj1iG2g2e_wY_xKjWq-Z2qB) **<-- (REMEMBER TO UPDATE THIS LINK TO YOUR NOTEBOOK!)**
 
-## 📂 Estructura del Repositorio
-* `ORT_Therapy_Comparison.ipynb`: El cuaderno de Colab interactivo con el experimento central del artículo.
-* `bn-human-BNU-1_0025890_session_1.edges`: El dataset del conectoma humano requerido (debe descargarse de [Network Data Repository](https://networkrepository.com/bn-human-BNU-1-0025890-session-1.php)).
-* `/data`: Contiene los archivos `.csv` con los resultados detallados generados por el notebook.
-* `/figures`: Contiene las figuras generadas para el artículo (como la imagen conceptual de arriba).
-* `LICENSE`: La licencia MIT del código.
-* `README.md`: Este archivo.
+## 📂 Repository Structure
+* `ORT_Therapy_Comparison.ipynb`: The interactive Colab notebook with the paper's core experiment.
+* `bn-human-BNU-1_0025890_session_1.edges`: The required human connectome dataset (must be downloaded from [Network Data Repository](https://networkrepository.com/bn-human-BNU-1-0025890-session-1.php)).
+* `/data`: Contains the `.csv` files with the detailed results generated by the notebook.
+* `/figures`: Contains the generated figures for the paper (like the conceptual image above).
+* `LICENSE`: The project's MIT License.
+* `README.md`: This file.
 
-## 🔬 Ciencia Independiente y Abierta
-Este trabajo se realizó de manera completamente independiente, sin financiación institucional ni corporativa, demostrando que la investigación de frontera puede surgir también desde entornos abiertos y accesibles. Este proyecto es la aplicación práctica y validación empírica de los principios explorados en el [proyecto Topological Reinforcement Operator](https://github.com/NachoPeinador/Topological-Reinforcement-Operator).
+## 🔬 Independent and Open Science
+This work was conducted completely independently, without institutional or corporate funding, demonstrating that cutting-edge research can also emerge from open and accessible environments. This project is the practical application and empirical validation of the principles explored in the [Topological Reinforcement Operator project](https://github.com/NachoPeinador/Topological-Reinforcement-Operator).
 
 [![Sponsor @NachoPeinador](https://img.shields.io/badge/Sponsor-%E2%9D%A4-%23db61a2.svg)](https://github.com/sponsors/NachoPeinador)
 
-## 🚀 Apoya y Difunde esta Investigación
-Como investigador independiente, la visibilidad y el impacto de este trabajo dependen en gran medida del apoyo de la comunidad. Si esta investigación te ha resultado útil o interesante, aquí tienes algunas formas concretas de ayudar:
+## 🚀 Support and Share this Research
+As an independent researcher, the visibility and impact of this work largely depend on community support. If you found this research useful or interesting, here are a few specific ways to help:
 
-* **⭐️ Dale una Estrella en GitHub:** Es la forma más rápida y directa de mostrar tu apoyo y ayudar a que otros descubran este proyecto.
-* **🔄 Comparte en Redes Sociales:** Publica un enlace al preprint del artículo o a este repositorio en Twitter (X), LinkedIn o tu red académica preferida.
-* **✍️ Cita el Trabajo:** Si esta metodología inspira tu propia investigación, la citación es la forma más valiosa de reconocimiento en la ciencia.
-* **💬 Inicia una Discusión:** ¿Tienes ideas, preguntas o críticas constructivas? Abre un "Issue" aquí en el repositorio.
+* **⭐️ Star on GitHub:** It's the quickest and most direct way to show your support and help others discover this project.
+* **🔄 Share on Social Media:** Post a link to the paper's preprint or this repository on Twitter (X), LinkedIn, or your preferred academic network.
+* **✍️ Cite the Work:** If this methodology inspires your own research, citation is the most valuable form of recognition in science.
+* **💬 Start a Discussion:** Have ideas, questions, or constructive criticism? Open an "Issue" here in the repository.
 
-**¡Gracias por tu apoyo para hacer visible la ciencia independiente!**
+**Thank you for your support in making independent science visible!**
 
-## ✍️ Citación
-Si utilizas este trabajo, por favor, cítalo:
+## ✍️ Citation
+If you use this work, please cite it:
 
-**Formato BibTeX**
+**BibTeX Format**
 ```bibtex
 @article{PeinadorSala2025,
   author    = {Jos\'{e} Ignacio Peinador Sala},
@@ -70,5 +70,5 @@ Si utilizas este trabajo, por favor, cítalo:
   journal   = {Zenodo},
   year      = {2025},
   doi       = {10.5281/zenodo.17417142},
-  note      = {Repositorio de código y datos: \url{[https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience](https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience)}}
+  note      = {Code and data repository: \url{[https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience](https://github.com/NachoPeinador/Minimal-Reconnection-for-Brain-Resilience)}}
 }
