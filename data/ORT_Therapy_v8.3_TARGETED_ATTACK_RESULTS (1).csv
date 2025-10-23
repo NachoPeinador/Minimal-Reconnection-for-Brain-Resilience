@@ -1,0 +1,5 @@
+Strategy,Time (s),Connections,Resilience_Post,Components_Post,GC_Ratio_Post,Resilience_Gain,Component_Reduction,GC_Ratio_Gain
+ORT-THERAPY-F (Proposed),7.520987,946,1.000000,1,1.000000,0.382108,946,0.005514
+Damaged State (Pre-Therapy),0.000000,0,0.617892,947,0.994486,0.000000,0,0.000000
+Preferential Attachment (Baseline),15.738923,1564,0.617892,947,0.994486,0.000000,0,0.000000
+Common Neighbors (Baseline),90.379948,1551,0.617892,947,0.994486,0.000000,0,0.000000
